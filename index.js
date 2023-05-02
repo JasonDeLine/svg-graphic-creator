@@ -17,3 +17,35 @@ class SVGCreator {
         this.shapeEl = shape.render()
     }
 }
+
+// array of questions using inquirer
+const questions = [{
+    
+    type: "input",
+    name: "text",
+    message: 'Please enter 1-3 letters:',
+    validate: textInput => {
+        if (textInput.length > 0 && textInput.length < 4) {
+            return true;
+        } else {
+            return "Please only enter between 1 and 3 letters"
+        }
+    },
+},
+    {
+    type: 'input',
+    name: 'textColor',
+    message: 'Please enter a text color:',
+  },
+  {
+    type: 'input',
+    name: 'shapeColor',
+    message: 'Please enter a shape color:',
+  },
+  {
+    type: 'list',
+    name: 'shapeType',
+    message: 'Please pick a shape:',
+    choices: ['Circle', 'Square', 'Triangle'],
+  },
+];
