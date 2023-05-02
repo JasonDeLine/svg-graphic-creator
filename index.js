@@ -49,3 +49,38 @@ const questions = [{
     choices: ['Circle', 'Square', 'Triangle'],
   },
 ];
+
+// function to write to file
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, err => {
+    err ? console.log(err) : console.log(`The file ${fileName} has been saved!`);
+  });
+}
+
+async function init() {
+    console.log('Welcome to the SVG Creator. Please follow the prompts below.');
+
+    let svgText = '';
+    let svgFile = 'logo.svg';
+
+    const answers = await inquirer.prompt(questions);
+
+    let userText = '';
+    if (answers.text.length > 0 && answers.text.length < 4) {
+        userText = answers.text;
+    }
+    
+    // user input entered into console
+    console.log(`User text: ${userText}`);
+
+    const textColor = answers.textColor;
+    console.log(`Text color: ${textColor}`);
+
+    const shapeColor = answers.shapeColor;
+    console.log(`Shape color: ${shapeColor}`);
+
+    const shapeType = answers.shapeType.toLowerCase();
+    console.log(`Shape type: ${shapeType}`);
+    
+}
+
