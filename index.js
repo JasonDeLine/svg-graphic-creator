@@ -1,5 +1,5 @@
 const fs = require('fs')
-import inquirer from 'inquirer';
+const inquirer = require("inquirer");
 const {CircleShape, SquareShape, TriangleShape} = require("./lib/shapes");
 
 class SVGCreator {
@@ -82,7 +82,7 @@ async function init() {
     const shapeType = answers.shapeType.toLowerCase();
     console.log(`Shape type: ${shapeType}`);
     
-    // set shape for new svg
+    // set shape for new
     let userShape;
     if (shapeType === "Square" || shapeType === "square") {
         userShape = new Square();
