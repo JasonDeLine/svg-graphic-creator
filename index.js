@@ -8,13 +8,13 @@ class SVGCreator {
         this.shapeElement = ''
     }
     render() {
-        return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.shapeEl}${this.textEl}</svg>`
+        return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.shapeElement}${this.textElement}</svg>`
     }
     setTextEl(text, color) {
         this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${color}">${text}</text>`
     }
     setShapeEl(shape) {
-        this.shapeEl = shape.render()
+        this.shapeElement = shape.render()
     }
 }
 
@@ -50,10 +50,20 @@ const questions = [{
   },
 ];
 
-// function to write to file
-function writeToFile(fileName, data) {
-  fs.writeFile(fileName, data, err => {
-    err ? console.log(err) : console.log(`The file ${fileName} has been saved!`);
+function writeToFile(fileName, data, folderName = '.') {
+  // create the folder if it doesn't exist
+  if (!fs.existsSync(folderName)) {
+    fs.mkdirSync(folderName);
+  }
+  
+  const filePath = `${folderName}/${fileName}`;
+
+  fs.writeFile(filePath, data, err => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(`The file ${filePath} has been saved!`);
+    }
   });
 }
 
@@ -62,6 +72,7 @@ async function init() {
 
     let svgText = '';
     let svgFile = 'logo.svg';
+    let folderName = 'logo-examples';
 
     const answers = await inquirer.prompt(questions);
 
@@ -107,7 +118,7 @@ async function init() {
     svg.setTextEl(userText, textColor);
     svg.setShapeEl(userShape);
     svgText = svg.render();
-    writeToFile(svgFile, svgText); 
+    writeToFile(svgFile, svgText, folderName); 
 }
 
 init();
