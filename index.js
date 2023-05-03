@@ -55,16 +55,29 @@ function writeToFile(fileName, data, folderName = '.') {
   if (!fs.existsSync(folderName)) {
     fs.mkdirSync(folderName);
   }
-  
-  const filePath = `${folderName}/${fileName}`;
 
-  fs.writeFile(filePath, data, err => {
+  let filePath = `${folderName}/${fileName}`;
+
+  // check if file already exists, add random number to file name if it does
+  let count = 1;
+  while (fs.existsSync(filePath)) {
+    filePath = `${folderName}/${fileName.slice(0, -4)}${count}.svg`;
+    count++;
+  }
+
+  fs.writeFile(filePath, data, (err) => {
     if (err) {
       console.log(err);
     } else {
       console.log(`The file ${filePath} has been saved!`);
     }
   });
+}
+
+// function to generate new file name
+function getFileName() {
+  const randomString = Math.random().toString(36).substring(2, 7);
+  return `logo-${currentDate}-${randomString}.svg`;
 }
 
 async function init() {
