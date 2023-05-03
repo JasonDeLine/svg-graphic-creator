@@ -82,5 +82,32 @@ async function init() {
     const shapeType = answers.shapeType.toLowerCase();
     console.log(`Shape type: ${shapeType}`);
     
+    // set shape for new svg
+    let userShape;
+    if (shapeType === "Square" || shapeType === "square") {
+        userShape = new Square();
+        console.log("User selected Square shape");
+    }
+    else if (shapeType === "Circle" || shapeType === "circle") {
+        userShape = new Circle();
+        console.log("User selected Circle shape");
+    }
+    else if (shapeType === "Triangle" || shapeType === "triangle") {
+        userShape = new Triangle();
+        console.log("User selected Triangle shape");
+    }
+    else {
+        console.log("Uh oh something went wrong! Lets try again!");
+    }
+    // have to set shapeColor before construction
+    userShape.setColor(shapeColor);
+
+    // final generation of SVG
+    const svg = new SVGCreator();
+    svg.setTextEl(userText, textColor);
+    svg.setShapeEl(userShape);
+    svgText = svg.render();
+    writeToFile(svgFile, svgText); 
 }
+
 init();
