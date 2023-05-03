@@ -1,5 +1,5 @@
 const fs = require('fs')
-const inquirer = require("inquirer");
+import inquirer from 'inquirer';
 const {CircleShape, SquareShape, TriangleShape} = require("./lib/shapes");
 
 class SVGCreator {
