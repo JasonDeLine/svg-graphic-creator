@@ -83,4 +83,4 @@ async function init() {
     console.log(`Shape type: ${shapeType}`);
     
 }
-
+init();
