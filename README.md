@@ -15,7 +15,7 @@
 This application collects four user inputs, then uses the information to generate an svg logo image. The user is asked to input three letters, a text color, a shape color, then shoose from three preselected shapes. When all user inputs are completed, the application creates a file path where the new logo.svg file is saved. Each subsequent use of the application, checks the file path and create s a new unique file name to ensure that no previous files are overridden. 
 
 ## ScreenCastify Link
-[Video Demo](link)
+[Video Demo](https://drive.google.com/file/d/1Vn1Am5PATmAMUmlT-zGYTyt7zEAgZ46e/view)
 
 ## User Story
 ```md
