@@ -1,6 +1,6 @@
 const fs = require('fs')
 const inquirer = require("inquirer");
-const {CircleShape, SquareShape, TriangleShape} = require("./lib/shapes");
+const {CircleShape, SquareShape, TriangleShape} = require("./lib/shapes.js");
 
 class SVGCreator {
     constructor() {
@@ -85,15 +85,15 @@ async function init() {
     // set shape for new
     let userShape;
     if (shapeType === "Square" || shapeType === "square") {
-        userShape = new Square();
+        userShape = new SquareShape();
         console.log("User selected Square shape");
     }
     else if (shapeType === "Circle" || shapeType === "circle") {
-        userShape = new Circle();
+        userShape = new CircleShape();
         console.log("User selected Circle shape");
     }
     else if (shapeType === "Triangle" || shapeType === "triangle") {
-        userShape = new Triangle();
+        userShape = new TriangleShape();
         console.log("User selected Triangle shape");
     }
     else {
